@@ -1,26 +1,117 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* --- GLOBAL BACKGROUND --- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-gradient-to-br from-zinc-100 via-white to-zinc-200 text-zinc-900 font-sans antialiased;
+  background-attachment: fixed;
+}
+
+/* --- LIQUID GLASS SHADOW (diffused iOS shadow) --- */
+.soft-shadow {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* --- LIQUID GLASS PANEL --- */
+.glass {
+  @apply backdrop-blur-2xl border rounded-3xl;
+  @apply bg-white/40 border-white/50;
+  @apply transition-all duration-300;
+  @apply shadow-none;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Optional subtle hover puff */
+.glass:hover {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* --- CLOUDBUBBLE PILLS (fun bubbly iOS style) --- */
+.pill {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium;
+  @apply bg-white/70 text-zinc-700 border border-white/60 backdrop-blur-xl;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* --- OPTION PILL --- */
+.option-pill {
+  @apply inline-flex h-9 min-w-[36px] items-center justify-center rounded-full font-semibold text-xs;
+  @apply bg-white/70 text-zinc-700 border border-zinc-200;
+  @apply backdrop-blur-xl transition-all duration-200;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.option-pill:hover {
+  @apply bg-white;
+}
+
+/* selected pill */
+.option-pill-selected {
+  @apply border-transparent text-white;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow:
+    0 4px 14px rgba(99, 102, 241, 0.35),
+    0 0 1px rgba(255,255,255,0.6) inset;
+}
+
+/* --- PRIMARY BUTTON (iOS bubble button) --- */
+.primary-btn {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold text-white;
+  @apply transition-all duration-300;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  box-shadow:
+    0 6px 20px rgba(15, 23, 42, 0.25),
+    inset 0 1px 1px rgba(255,255,255,0.15);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.28),
+    inset 0 1px 1px rgba(255,255,255,0.15);
+}
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+/* --- OUTLINE BUTTON --- */
+.primary-btn-outline {
+  @apply inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800;
+  @apply border border-zinc-300 bg-white/70 backdrop-blur-xl transition-all;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.primary-btn-outline:hover {
+  @apply bg-white;
+  transform: translateY(-1px);
+}
+
+/* --- SMOOTH FADE IN MOTION --- */
+.fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }

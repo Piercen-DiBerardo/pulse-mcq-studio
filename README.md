@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pulse MCQ Studio
 
-## Getting Started
+A lightweight, clean, and ridiculously easy way to turn Excel question
+banks into an interactive practice exam.\
+No accounts, no backend, no tracking. Everything runs locally in your
+browser.
 
-First, run the development server:
+------------------------------------------------------------------------
 
-```bash
+## 🚀 What This App Does
+
+-   Import an `.xlsx` file containing your MCQs\
+-   Automatically parse questions, answers, explanations, and
+    multi-select rules\
+-   Practice in a clean, Apple-style UI\
+-   Get instant scoring\
+-   Nothing is ever uploaded anywhere
+
+------------------------------------------------------------------------
+
+## 📦 Excel Format
+
+Your Excel file must contain:
+
+    id | question | A | B | C | D | correct | explanation | multi
+
+Example:
+
+    1 | Which are primes? | 2 | 4 | 5 | 9 | A,C | Because 2 & 5 are prime. | 1
+
+-   `correct`: comma-separated letters\
+-   `multi`: `1` if multiple answers allowed, `0` otherwise
+
+------------------------------------------------------------------------
+
+## 🎨 Features
+
+-   Multi-answer support\
+-   Live progress tracking\
+-   Works entirely offline\
+-   Simple CSV template included\
+-   React + Tailwind + XLSX
+
+------------------------------------------------------------------------
+
+## 📘 Generating Exams From Your Notes
+
+If you want to create new exams quickly, you can generate your entire
+question bank using ChatGPT or any other generative AI tool.\
+This is the workflow I usually follow:
+
+1.  Copy your course notes or lecture slides\
+2.  Paste them into ChatGPT\
+3.  Upload the provided `mcq-template.xlsx`\
+4.  Ask it to generate a full exam that matches the same format
+
+You get high‑quality practice material without hand‑writing dozens of
+questions.
+
+### Example Prompt
+
+    You are helping me create a university-level MCQ exam. 
+    Use higher-order, conceptual, and multi-step reasoning questions only. 
+    Difficulty should be appropriate for a 3rd-year course.
+
+    I will upload an Excel file formatted like this:
+
+    id | question | A | B | C | D | correct | explanation | multi
+
+    Use the same column names and format exactly. 
+    Do not rewrite them, rename them, or add new columns.
+
+    Rules:
+    - Write 50 multiple-choice questions based on my notes.
+    - Some questions should be multi-select. Set multi=1 when multiple answers apply, otherwise 0.
+    - The "correct" field must use letter keys (e.g., "B", or "A,C").
+    - The "explanation" field should be short and helpful.
+    - Do NOT number the questions yourself. Just fill the "id" column incrementally starting at 1.
+
+    Once done, export everything as an XLSX file that I can download.
+
+    Here are my notes:
+    [PASTE YOUR NOTES HERE]
+
+------------------------------------------------------------------------
+
+## 🛠 Tech Stack
+
+-   Next.js / React\
+-   TailwindCSS\
+-   XLSX (SheetJS) for Excel parsing\
+-   Fully client-side
+
+------------------------------------------------------------------------
+
+## 🧩 Local Development
+
+``` bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the local server and drop in a spreadsheet to get started
+immediately.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+------------------------------------------------------------------------
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+Pull requests are welcome.
 
-To learn more about Next.js, take a look at the following resources:
+------------------------------------------------------------------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT License.
 
-## Deploy on Vercel
+------------------------------------------------------------------------
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💬 Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project started as a quick tool for studying, and slowly turned
+into a full mini app.\
+Have fun practicing and good luck with your exams. Don't blame me if you still get cooked.
